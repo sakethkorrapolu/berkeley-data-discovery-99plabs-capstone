@@ -2,8 +2,8 @@
 ## Data Analyst in a Box
 
 To run the React frontend:
-* cd chat
-* npm start
+* `cd chat`
+* `npm start`
 
 ---
 
