@@ -1,0 +1,30 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+chat/node_modules
+chat/.pnp
+chat/.pnp.js
+
+# testing
+chat/coverage
+
+# production
+chat/build
+
+# misc
+chat/.env.local
+chat/.env.development.local
+chat/.env.test.local
+chat/.env.production.local
+
+chat/npm-debug.log*
+chat/yarn-debug.log*
+chat/yarn-error.log*
+
+chat/api/venv
+chat/api/config.py
+chat/api/__pycache__
+
+chat/.vscode
+
+honda_llm_test.ipynb
