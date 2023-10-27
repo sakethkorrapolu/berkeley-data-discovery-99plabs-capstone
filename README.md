@@ -18,4 +18,4 @@ To run the Flask API:
 * `pip install -r requirements.txt`
 * Add OpenAI API key, path to csv file, and database uri to config.py file
     * DB URI should look like: `sqlite:////{path_to_db}trips_summary.db`
-*`flask run`
+* `flask run`
