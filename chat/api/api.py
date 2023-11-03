@@ -56,3 +56,6 @@ def predict():
     query_template = f"{query} Execute all necessary queries, and always return results to the query, no explanations or apologies please. Word wrap output every 50 characters."
     result = trips_summary_agent_executor.run(query_template)
     return jsonify({"res": result})
+
+if __name__ == "__main__":
+    app.run()
