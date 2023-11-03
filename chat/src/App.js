@@ -89,7 +89,11 @@ function App() {
       },
       body: JSON.stringify(textData)
     }).then((response) => response.json())
-      .then((data) => setRes(data.res))
+      .then((data) => setMessages([
+        ...messages,
+        {text, isBot: false},
+        {text: data.res, isBot: true}
+      ]))
       .catch((error) => {
         console.error('Error: ', error);
       })
@@ -105,13 +109,6 @@ function App() {
     // const data = llmRes.json()
     // setRes(data.res)
 
-    console.log("returned reponse: ", res);
-
-    setMessages([
-      ...messages,
-      {text, isBot: false},
-      {text: res, isBot: true}
-    ])
     // console.log(res);
   }
 
