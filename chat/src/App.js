@@ -19,7 +19,7 @@ import { useState, useRef, useEffect } from 'react';
 function App() {
 
   const [res, setRes] = useState("")
-  
+
   // useEffect(() => {
   //   fetch("/api/llm").then(res => res.json()).then(data => (setResult(data.result)))
   // })
@@ -41,10 +41,10 @@ function App() {
     setInput(''); //clear input box after input is sent to model
     setMessages([
       ...messages,
-      {text, isBot: false}
+      { text, isBot: false }
     ])
     const res = "that's great man"; //await sendMsgToOpenAI(text); //// send var text to model
-    
+
     // const textData = {'text': text};
     // fetch('/api/llm', {
     //   method: 'POST',
@@ -58,11 +58,11 @@ function App() {
     //   .catch((error) => {
     //     console.error('Error: ', error);
     //   })
-      
+
     setMessages([
       ...messages,
-      {text, isBot: false},
-      {text: res, isBot: true}
+      { text, isBot: false },
+      { text: res, isBot: true }
     ])
     console.log(res);
   }
@@ -75,24 +75,24 @@ function App() {
     const text = e.target.value;
     setMessages([
       ...messages,
-      {text, isBot: false}
+      { text, isBot: false }
     ])
     //const res = "that's great man"; //await sendMsgToOpenAI(text); //// send var text to model
-    
-    const textData = {'text': text};
+
+    const textData = { 'text': text };
     console.log("llm input:", textData)
 
     await fetch('/api/llm', {
       method: 'POST',
       headers: {
-        'Content-Type' : 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(textData)
     }).then((response) => response.json())
       .then((data) => setMessages([
         ...messages,
-        {text, isBot: false},
-        {text: data.res, isBot: true}
+        { text, isBot: false },
+        { text: data.res, isBot: true }
       ]))
       .catch((error) => {
         console.error('Error: ', error);
@@ -117,7 +117,7 @@ function App() {
       <div className="sideBar">
         <div className="upperSide">
           <div className="upperSideTop"><img src={gptLogo} alt="Logo" className="logo" /><span className="brand">99P Labs Chatbot</span></div>
-          <button className="midBtn" onClick={() => {window.location.reload()}}><img src={addBtn} alt="Restart Chat" className="addBtn" />Restart Chat</button>
+          <button className="midBtn" onClick={() => { window.location.reload() }}><img src={addBtn} alt="Restart Chat" className="addBtn" />Restart Chat</button>
           <div className="upperSideBottom">
             <button className="query" onClick={handleQuery} value={"What size is the trips summary dataset?"}><img src={msgIcon} alt="Query" />What size is the trips summary dataset?</button>
             <button className="query" onClick={handleQuery} value={"Which segment had the longest trip?"}><img src={msgIcon} alt="Query" />Which segment had the longest trip?</button>
@@ -127,7 +127,7 @@ function App() {
           <div className="listItems"><img src={home} alt="Home" className="listItemsImg" />Home</div>
           <div className="listItems"><img src={saved} alt="Saved" className="listItemsImg" />Saved</div>
           <div className="listItems"><img src={rocket} alt="Rocket" className="listItemsImg" />Upgrade to Pro</div>
-        </div>        
+        </div>
       </div>
       <div className="main">
         <div className="chats">
@@ -137,16 +137,16 @@ function App() {
           <div className="chat bot">
             <img className="chatImg" src={gptImgLogo} alt="" /><p className="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div> */}
-          {messages.map((message, i) => 
-            <div key={i} className={message.isBot?"chat bot":"chat"}>
-              <img className="chatImg" src={message.isBot?gptImgLogo:userIcon} alt="" /><p className="txt">{message.text}</p>
+          {messages.map((message, i) =>
+            <div key={i} className={message.isBot ? "chat bot" : "chat"}>
+              <img className="chatImg" src={message.isBot ? gptImgLogo : userIcon} alt="" /><p className="txt">{message.text}</p>
             </div>
           )}
           <div ref={msgEnd} />
         </div>
         <div className="chatFooter">
           <div className="inp">
-            <input type="text" placeholder="Send a message" value={input} onKeyDown={handleEnter} onChange={(e)=>setInput(e.target.value)}/><button className="send" onClick={handleSend}><img src={sendBtn} alt="Send" /></button>
+            <input type="text" placeholder="Send a message" value={input} onKeyDown={handleEnter} onChange={(e) => setInput(e.target.value)} /><button className="send" onClick={handleSend}><img src={sendBtn} alt="Send" /></button>
           </div>
           <p>This model uses GPT-3.5 Turbo, LangChain, and PandasAI. Note that it is not conversational and does not retain memory of previous messages.</p>
         </div>
