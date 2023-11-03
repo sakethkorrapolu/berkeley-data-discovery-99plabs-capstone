@@ -21,6 +21,7 @@ chat/npm-debug.log*
 chat/yarn-debug.log*
 chat/yarn-error.log*
 
+chat/api/env
 chat/api/venv
 chat/api/config.py
 chat/api/__pycache__
