@@ -18,14 +18,7 @@ import { useState, useRef, useEffect } from 'react';
 
 function App() {
 
-  const [res, setRes] = useState("")
-
-  // useEffect(() => {
-  //   fetch("/api/llm").then(res => res.json()).then(data => (setResult(data.result)))
-  // })
-
   const msgEnd = useRef(null);
-
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([{
     text: "Hi, I am the Data Analyst in a Box! My role is to answer any of your data analysis inquiries about 99P Labs' V2X dataset. Ask away: I can answer quantitative questions about the dataset (by querying it for you!) and generate visualizations. Feel free to click on the sample prompts on the left.",
@@ -36,48 +29,13 @@ function App() {
     msgEnd.current.scrollIntoView();
   }, [messages])
 
-  const handleSend = () => { //async () => {
+  const handleSend = async () => {
     const text = input;
     setInput(''); //clear input box after input is sent to model
     setMessages([
       ...messages,
       { text, isBot: false }
     ])
-    const res = "that's great man"; //await sendMsgToOpenAI(text); //// send var text to model
-
-    // const textData = {'text': text};
-    // fetch('/api/llm', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type' : 'application/json',
-    //   },
-    //   body: JSON.stringify(textData)
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => setRes(data.res))
-    //   .catch((error) => {
-    //     console.error('Error: ', error);
-    //   })
-
-    setMessages([
-      ...messages,
-      { text, isBot: false },
-      { text: res, isBot: true }
-    ])
-    console.log(res);
-  }
-
-  const handleEnter = (e) => {//async (e) => {
-    if (e.key === 'Enter') handleSend(); // await handleSend();
-  }
-
-  const handleQuery = async (e) => {
-    const text = e.target.value;
-    setMessages([
-      ...messages,
-      { text, isBot: false }
-    ])
-    //const res = "that's great man"; //await sendMsgToOpenAI(text); //// send var text to model
 
     const textData = { 'text': text };
     console.log("llm input:", textData)
@@ -97,19 +55,37 @@ function App() {
       .catch((error) => {
         console.error('Error: ', error);
       })
+  }
 
-    // const llmRes = await fetch('/api/llm', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type' : 'application/json',
-    //   },
-    //   body: JSON.stringify(textData)
-    // })
+  const handleEnter = async (e) => {
+    if (e.key === 'Enter') await handleSend();
+  }
 
-    // const data = llmRes.json()
-    // setRes(data.res)
+  const handleQuery = async (e) => {
+    const text = e.target.value;
+    setMessages([
+      ...messages,
+      { text, isBot: false }
+    ])
 
-    // console.log(res);
+    const textData = { 'text': text };
+    console.log("llm input:", textData)
+
+    await fetch('/api/llm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(textData)
+    }).then((response) => response.json())
+      .then((data) => setMessages([
+        ...messages,
+        { text, isBot: false },
+        { text: data.res, isBot: true }
+      ]))
+      .catch((error) => {
+        console.error('Error: ', error);
+      })
   }
 
   return (
