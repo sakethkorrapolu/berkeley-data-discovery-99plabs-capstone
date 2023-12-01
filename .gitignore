@@ -25,6 +25,7 @@ chat/api/env
 chat/api/venv
 chat/api/config.py
 chat/api/__pycache__
+chat/api/pandasai.log
 
 chat/.vscode
 
