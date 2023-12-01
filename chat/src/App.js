@@ -4,17 +4,14 @@
 
 
 import './App.css';
-import gptLogo from "./assets/chatgpt.svg";
+import gptLogo from "./assets/99p-logo-light.png";
 import addBtn from './assets/add-30.png';
 import msgIcon from './assets/message.svg';
-import home from "./assets/home.svg";
-import saved from "./assets/bookmark.svg";
-import rocket from "./assets/rocket.svg";
 import sendBtn from "./assets/send.svg";
-import userIcon from './assets/user-icon.png';
-import gptImgLogo from './assets/chatgptLogo.svg';
+import userIcon from './assets/user-icon-dark.png';
+import gptImgLogo from './assets/99p-logo-dark-chat.png';
+import visual from './assets/temp_chart.png';
 import { useState, useRef, useEffect } from 'react';
-
 
 function App() {
 
@@ -34,7 +31,8 @@ function App() {
     setInput(''); //clear input box after input is sent to model
     setMessages([
       ...messages,
-      { text, isBot: false }
+      { text, isBot: false },
+      { text: "Question answering in progress...", isBot: true }
     ])
 
     const textData = { 'text': text };
@@ -65,7 +63,8 @@ function App() {
     const text = e.target.value;
     setMessages([
       ...messages,
-      { text, isBot: false }
+      { text, isBot: false },
+      { text: "Question answering in progress...", isBot: true }
     ])
 
     const textData = { 'text': text };
@@ -92,37 +91,36 @@ function App() {
     <div className="App">
       <div className="sideBar">
         <div className="upperSide">
-          <div className="upperSideTop"><img src={gptLogo} alt="Logo" className="logo" /><span className="brand">99P Labs Chatbot</span></div>
+          <div className="upperSideTop"><img src={gptLogo} alt="Logo" className="logo" /><span className="brand">CHATBOT</span></div>
           <button className="midBtn" onClick={() => { window.location.reload() }}><img src={addBtn} alt="Restart Chat" className="addBtn" />Restart Chat</button>
           <div className="upperSideBottom">
-            <button className="query" onClick={handleQuery} value={"What size is the trips summary dataset?"}><img src={msgIcon} alt="Query" />What size is the trips summary dataset?</button>
-            <button className="query" onClick={handleQuery} value={"Which segment had the longest trip?"}><img src={msgIcon} alt="Query" />Which segment had the longest trip?</button>
+            <p className="heading">EXAMPLE TASKS</p>
+            <span className="queryTopic">Summarization</span>
+            <button className="query" onClick={handleQuery} value={"How many total trips were taken in this dataset?"}><img src={msgIcon} alt="Query" />How many total trips were taken in this dataset?</button>
+            <span className="queryTopic">Calculation</span>
+            <button className="query" onClick={handleQuery} value={"What are the average amounts of storage used per vehicle identified by their full media version name?"}><img src={msgIcon} alt="Query" />What are the average amounts of storage used per vehicle identified by their full media version name?</button>
+            <span className="queryTopic">Visualization</span>
+            <button className="query" onClick={handleQuery} value={"Plot the distribution of lengths of trips for each device for the top 10 most popular devices."}><img src={msgIcon} alt="Query" />Plot the distribution of lengths of trips for each device for the top 10 most popular devices.</button>
           </div>
-        </div>
-        <div className="lowerSide">
-          <div className="listItems"><img src={home} alt="Home" className="listItemsImg" />Home</div>
-          <div className="listItems"><img src={saved} alt="Saved" className="listItemsImg" />Saved</div>
-          <div className="listItems"><img src={rocket} alt="Rocket" className="listItemsImg" />Upgrade to Pro</div>
         </div>
       </div>
       <div className="main">
         <div className="chats">
-          {/* <div className="chat">
-            <img className="chatImg" src={userIcon} alt="" /><p className="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <div className="chat bot">
-            <img className="chatImg" src={gptImgLogo} alt="" /><p className="txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div> */}
           {messages.map((message, i) =>
             <div key={i} className={message.isBot ? "chat bot" : "chat"}>
-              <img className="chatImg" src={message.isBot ? gptImgLogo : userIcon} alt="" /><p className="txt">{message.text}</p>
+              <img className="chatImg" src={message.isBot ? gptImgLogo : userIcon} alt="" />
+              {message.text === "visual" ? (
+                <img className="visual" src={visual} alt="Visual" />
+              ) : (
+                <p className="txt">{message.text}</p>
+              )}
             </div>
           )}
           <div ref={msgEnd} />
         </div>
         <div className="chatFooter">
           <div className="inp">
-            <input type="text" placeholder="Send a message" value={input} onKeyDown={handleEnter} onChange={(e) => setInput(e.target.value)} /><button className="send" onClick={handleSend}><img src={sendBtn} alt="Send" /></button>
+            <input type="text" placeholder="Ask a question..." value={input} onKeyDown={handleEnter} onChange={(e) => setInput(e.target.value)} /><button className="send" onClick={handleSend}><img src={sendBtn} alt="Send" /></button>
           </div>
           <p>This model uses GPT-3.5 Turbo, LangChain, and PandasAI. Note that it is not conversational and does not retain memory of previous messages.</p>
         </div>

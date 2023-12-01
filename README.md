@@ -3,7 +3,7 @@
 
 To run the React frontend:
 * `cd chat`
-* Download node_modules
+* `npm i`
 * `npm start`
 
 ---

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    background: rgb(3, 0, 31);
+    background: #230202;
     color: rgba(222, 222, 222, 1);
     /* font-family: 'Poppins', sans-serif; */
 }
@@ -22,7 +22,7 @@ body {
 
 .sideBar {
     flex: 3;
-    border-right: 1px solid rgb(100, 100, 100);
+    border-right: 1px solid rgb(124, 35, 8);
 }
 
 .main {
@@ -34,19 +34,26 @@ body {
 }
 
 .brand {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-family: 'Optima', sans-serif;
+    color: rgb(186, 181, 181);
 }
 
 .upperSide {
     padding: 2.5rem;
-    border-bottom: 1px solid rgb(100, 100, 100);
-    height: 70%;
+    /* border-bottom: 1px solid rgb(124, 35, 8);
+    height: 70%; */
 }
 
 .upperSideTop {
     display: flex;
     align-items: center;
     margin-bottom: 2.5rem;
+}
+.upperSideTop>img {
+    width: 6rem;
+    height:6rem;
+    border-radius: 0.5rem;
 }
 
 .addBtn {
@@ -55,9 +62,9 @@ body {
 }
 
 .midBtn {
-    background: #5A4BFF;
+    background: rgb(165, 42, 42);
     border: none;
-    color: white;
+    color: rgba(222, 222, 222, 1);
     padding: 1.5rem;
     font-size: 1.5rem;
     width: 25rem;
@@ -65,12 +72,25 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     border-radius: 0.5rem;
 }
 
 .midBtn:active {
-    background: #8978D9;
+    background: rgb(192, 37, 23);
+}
+
+.heading {
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    color: rgb(186, 181, 181);
+    font-family: 'Optima', sans-serif;
+}
+
+.queryTopic {
+    font-size: 1.5rem;
+    padding: 0.5rem;
 }
 
 .query {
@@ -82,41 +102,17 @@ body {
     width: 25rem;
     margin: 1rem auto;
     border-radius: 0.5rem;
-    border: 1px solid rgba(98, 98, 98, 1);
+    border: 1px solid rgb(124, 35, 8);
 }
 
 .query:active {
-    background: #30275B;
+    background: rgb(165, 42, 42);
 }
 
 .query>img {
     margin-right: 2rem;
     object-fit: cover;
     height: 1.75rem;
-}
-
-.lowerSide {
-    padding: 2rem;
-}
-
-.listItems {
-    margin: 0.75rem;
-    display: flex;
-    align-items: center;
-    font-size: 1.3rem;    
-}
-
-.listItemsImg {
-    margin: 1rem;
-    padding-right: 1rem;
-}
-
-.listItems:nth-child(1)>.listItemsImg {
-    margin-right: 0.5rem;
-}
-
-.listItems:nth-child(3)>.listItemsImg {
-    margin-right: 0.75rem;
 }
 
 .main {
@@ -154,8 +150,15 @@ body {
 }
 
 .bot {
-    background: rgba(28, 30, 58, 1);
+    background: rgb(124, 48, 48);
     width: fit-content;
+    border-radius: 0.5rem;
+}
+
+.visual {
+    object-fit: cover;
+    width: 50rem;
+    margin-right: 2rem;
     border-radius: 0.5rem;
 }
 
@@ -170,7 +173,7 @@ body {
 
 .inp {
     padding: 0.5rem;
-    background: rgba(28, 30, 58, 1);
+    background: rgb(124, 48, 48);
     display: flex;
     align-items: center;
     border-radius: 0.5rem;
@@ -187,6 +190,10 @@ body {
 .inp>input, .send {
     background: transparent;
     border:none;
+}
+
+.inp>input::placeholder{
+    color: rgb(186, 181, 181);
 }
 
 .chatFooter>p {
